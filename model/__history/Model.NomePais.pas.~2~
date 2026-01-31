@@ -1,0 +1,13 @@
+unit Model.NomePais;
+
+interface
+
+type
+  TNomePaisModel = class
+  private
+    FNomeOficial: string
+  end;
+
+implementation
+
+end.

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2025/08/12 21:03:51.000.851,=C:\Users\otavi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2026/01/31 11:23:12.077,=C:\Users\otavi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2026/01/31 11:23:50.109,C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\view\TelaPrincipal.dfm=C:\Users\otavi\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2026/01/31 11:23:50.109,C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\view\TelaPrincipal.pas=C:\Users\otavi\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2026/01/31 11:23:58.617,C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\ConsultaPais.dproj=C:\Users\otavi\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2026/01/31 11:35:32.749,=C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\Unit1.pas</Transaction>
+    <Transaction>2026/01/31 11:35:59.432,C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\service\Service.Api.Pais.pas=C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\Unit1.pas</Transaction>
+    <Transaction>2026/01/31 11:36:17.315,=C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\Unit1.pas</Transaction>
+    <Transaction>2026/01/31 11:36:35.650,C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\model\Modelo.Pais.pas=C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\Unit1.pas</Transaction>
+    <Transaction>2026/01/31 11:42:19.081,C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\model\Model.Pais.pas=C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\model\Modelo.Pais.pas</Transaction>
+    <Transaction>2026/01/31 11:42:32.256,=C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\Unit1.pas</Transaction>
+    <Transaction>2026/01/31 11:42:44.904,C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\model\Model.Moeda.pas=C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\Unit1.pas</Transaction>
+    <Transaction>2026/01/31 11:44:14.737,=C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\Unit1.pas</Transaction>
+    <Transaction>2026/01/31 11:44:33.367,C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\model\Model.NomePais.pas=C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\Unit1.pas</Transaction>
+    <Transaction>2026/01/31 11:44:49.126,C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\model\Model.MoedaPais.pas=C:\Users\otavi\Meu\Estudos\Curso Delphi\6 - Banco de dados e API Rest\ConsultaPais\model\Model.Moeda.pas</Transaction>
+  </Transactions>
+</BorlandProject>
