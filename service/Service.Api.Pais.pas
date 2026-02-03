@@ -38,14 +38,14 @@ function TPaisApiService.ConsultarPais(const ANomePais: string): TPaisModel;
 var
   Response: IHTTPResponse;
   JSONArray: TJSONArray;
-  JSONObject, NameObj, CurrenciesObj, CurrencyObj: TJSONObject;
+  JSONObject, NameObj, CurrenciesObj, CurrencyObj, FlagsObj: TJSONObject;
   CurrencyKey: string;
 begin
   Result := nil;
 
   try
     Response := FHttpClient.Get(
-      'https://restcountries.com/v3.1/name/' + ANomePais
+      'https://restcountries.com/v3.1/translation/' + ANomePais
     );
 
     if Response.StatusCode <> 200 then
@@ -82,6 +82,10 @@ begin
 
     Result.Moeda.Nome := CurrencyObj.GetValue<string>('name');
     Result.Moeda.Simbolo := CurrencyObj.GetValue<string>('symbol');
+
+    // Bandeira
+    FlagsObj := JSONObject.GetValue('flags') as TJSONObject;
+    Result.Bandeira.Png := FlagsObj.GetValue<string>('png');
 
   except
     on E: Exception do

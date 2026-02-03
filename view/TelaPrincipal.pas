@@ -5,8 +5,8 @@ interface
 uses
   Service.Api.Pais,
   Model.Pais,
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+  System.Net.HttpClient, Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.imaging.pngimage;
 
 type
   TfrmTelaPrincipal = class(TForm)
@@ -26,9 +26,12 @@ type
     lblPopulacao: TLabel;
     lblMoeda: TLabel;
     edtMoeda: TEdit;
+    lblBandeiraPais: TLabel;
+    imgBandeiraPais: TImage;
     procedure btnConsultarClick(Sender: TObject);
   private
     { Private declarations }
+    procedure CarregarBandeiraPais(const AUrl: string);
   public
     { Public declarations }
   end;
@@ -39,6 +42,28 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TfrmTelaPrincipal.CarregarBandeiraPais(const AUrl: string);
+var
+  HttpClient: THTTPClient;
+  Stream: TMemoryStream;
+begin
+  imgBandeiraPais.Picture := nil;
+
+  if AUrl = '' then
+    Exit;
+
+  HttpClient := THTTPClient.Create;
+  Stream := TMemoryStream.Create;
+  try
+    HttpClient.Get(AUrl, Stream);
+    Stream.Position := 0;
+    imgBandeiraPais.Picture.LoadFromStream(Stream);
+  finally
+    Stream.Free;
+    HttpClient.Free;
+  end;
+end;
 
 procedure TfrmTelaPrincipal.btnConsultarClick(Sender: TObject);
 var
@@ -60,6 +85,7 @@ begin
       edtRegiao.Text := Pais.Regiao;
       edtPopulacao.Text := Pais.Populacao.ToString;
       edtMoeda.Text := Pais.Moeda.Nome;
+      CarregarBandeiraPais(Pais.Bandeira.Png);
     finally
       Pais.Free;
     end;

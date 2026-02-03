@@ -2,7 +2,7 @@ object frmTelaPrincipal: TfrmTelaPrincipal
   Left = 0
   Top = 0
   Caption = 'Tela Principal'
-  ClientHeight = 220
+  ClientHeight = 500
   ClientWidth = 450
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object frmTelaPrincipal: TfrmTelaPrincipal
     Height = 65
     Align = alTop
     TabOrder = 0
-    ExplicitWidth = 624
+    ExplicitWidth = 448
     object lblNomePais: TLabel
       Left = 7
       Top = 24
@@ -28,7 +28,7 @@ object frmTelaPrincipal: TfrmTelaPrincipal
       Caption = 'Digite o nome do pa'#237's:'
     end
     object btnConsultar: TButton
-      Left = 366
+      Left = 351
       Top = 20
       Width = 75
       Height = 25
@@ -39,7 +39,7 @@ object frmTelaPrincipal: TfrmTelaPrincipal
     object edtNomePais: TEdit
       Left = 141
       Top = 21
-      Width = 219
+      Width = 204
       Height = 23
       BevelInner = bvNone
       BevelOuter = bvNone
@@ -51,16 +51,16 @@ object frmTelaPrincipal: TfrmTelaPrincipal
     Left = 0
     Top = 65
     Width = 450
-    Height = 155
+    Height = 435
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 624
-    ExplicitHeight = 376
+    ExplicitWidth = 448
+    ExplicitHeight = 385
     object gbxDadosPais: TGroupBox
-      Left = 8
+      Left = 7
       Top = 6
-      Width = 433
-      Height = 139
+      Width = 434
+      Height = 419
       Caption = 'Dados do pa'#237's:'
       TabOrder = 0
       object lblNomeOficial: TLabel
@@ -97,6 +97,21 @@ object frmTelaPrincipal: TfrmTelaPrincipal
         Width = 40
         Height = 15
         Caption = 'Moeda:'
+      end
+      object lblBandeiraPais: TLabel
+        Left = 16
+        Top = 141
+        Width = 90
+        Height = 15
+        Caption = 'Bandeira do pa'#237's:'
+      end
+      object imgBandeiraPais: TImage
+        Left = 16
+        Top = 162
+        Width = 402
+        Height = 239
+        Center = True
+        Stretch = True
       end
       object edtNomeOficial: TEdit
         Left = 17

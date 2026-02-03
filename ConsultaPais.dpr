@@ -6,7 +6,8 @@ uses
   Service.Api.Pais in 'service\Service.Api.Pais.pas',
   Model.Pais in 'model\Model.Pais.pas',
   Model.MoedaPais in 'model\Model.MoedaPais.pas',
-  Model.NomePais in 'model\Model.NomePais.pas';
+  Model.NomePais in 'model\Model.NomePais.pas',
+  Model.BandeiraPais in 'model\Model.BandeiraPais.pas';
 
 {$R *.res}
 

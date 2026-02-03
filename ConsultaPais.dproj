@@ -131,6 +131,7 @@
         <DCCReference Include="model\Model.Pais.pas"/>
         <DCCReference Include="model\Model.MoedaPais.pas"/>
         <DCCReference Include="model\Model.NomePais.pas"/>
+        <DCCReference Include="model\Model.BandeiraPais.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

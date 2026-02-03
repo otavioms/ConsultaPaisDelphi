@@ -1,0 +1,99 @@
+unit TelaPrincipal;
+
+interface
+
+uses
+  Service.Api.Pais,
+  Model.Pais,
+  System.Net.HttpClient, Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.imaging.pngimage;
+
+type
+  TfrmTelaPrincipal = class(TForm)
+    pnlAcoes: TPanel;
+    pnlDadosPais: TPanel;
+    btnConsultar: TButton;
+    lblNomePais: TLabel;
+    edtNomePais: TEdit;
+    gbxDadosPais: TGroupBox;
+    lblNomeOficial: TLabel;
+    edtNomeOficial: TEdit;
+    edtCapital: TEdit;
+    lblCaptial: TLabel;
+    edtRegiao: TEdit;
+    lblRegiao: TLabel;
+    edtPopulacao: TEdit;
+    lblPopulacao: TLabel;
+    lblMoeda: TLabel;
+    edtMoeda: TEdit;
+    lblBandeiraPais: TLabel;
+    imgBandeiraPais: TImage;
+    procedure btnConsultarClick(Sender: TObject);
+  private
+    { Private declarations }
+    procedure CarregarBandeiraPais;
+    procedure CarregarImagem;
+  public
+    { Public declarations }
+  end;
+
+var
+  frmTelaPrincipal: TfrmTelaPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmTelaPrincipal.CarregarBandeiraPais;
+var
+  HttpClient: THTTPClient;
+  Stream: TMemoryStream;
+begin
+  imgBandeiraPais.Picture := nil;
+
+  HttpClient := THTTPClient.Create;
+  Stream := TMemoryStream.Create;
+  try
+    HttpClient.Get(AUrl, Stream);
+    Stream.Position := 0;
+    imgBandeiraPais.Picture.LoadFromStream(Stream);
+  finally
+    Stream.Free;
+    HttpClient.Free;
+  end;
+end;
+
+procedure TfrmTelaPrincipal.btnConsultarClick(Sender: TObject);
+var
+  Service: TPaisApiService;
+  Pais: TPaisModel;
+begin
+  if Trim(edtNomePais.Text) = '' then
+  begin
+    ShowMessage('Informe o nome do país.');
+    Exit;
+  end;
+
+  Service := TPaisApiService.Create;
+  try
+    Pais := Service.ConsultarPais(edtNomePais.Text);
+    try
+      edtNomeOficial.Text := Pais.Nome.NomeOficial;
+      edtCapital.Text := Pais.Capital[0];
+      edtRegiao.Text := Pais.Regiao;
+      edtPopulacao.Text := Pais.Populacao.ToString;
+      edtMoeda.Text := Pais.Moeda.Nome;
+    finally
+      Pais.Free;
+    end;
+  except
+    on E: Exception do
+      ShowMessage(E.Message);
+  end;
+
+  CarregarBandeiraPais(Pais.Bandeira.Png);
+
+  Service.Free;
+end;
+
+end.

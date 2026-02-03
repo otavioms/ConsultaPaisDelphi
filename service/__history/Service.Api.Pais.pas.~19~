@@ -1,0 +1,101 @@
+unit Service.Api.Pais;
+
+interface
+
+uses
+  Model.Pais,
+  Model.NomePais,
+  Model.MoedaPais,
+  System.SysUtils, System.Classes, System.NET.HttpClient, System.NET.HttpClientComponent, System.JSON;
+
+type
+  TPaisApiService = class
+  private
+    FHttpClient: TNetHTTPClient;
+  public
+    constructor Create;
+    destructor Destroy; override;
+
+    function ConsultarPais(const ANomePais: string): TPaisModel;
+  end;
+
+implementation
+
+{ TPaisApiService }
+
+constructor TPaisApiService.Create;
+begin
+  FHttpClient := TNetHTTPClient.Create(nil);
+end;
+
+destructor TPaisApiService.Destroy;
+begin
+  FHttpClient.Free;
+  inherited;
+end;
+
+function TPaisApiService.ConsultarPais(const ANomePais: string): TPaisModel;
+var
+  Response: IHTTPResponse;
+  JSONArray: TJSONArray;
+  JSONObject, NameObj, CurrenciesObj, CurrencyObj, FlagsObj: TJSONObject;
+  CurrencyKey: string;
+begin
+  Result := nil;
+
+  try
+    Response := FHttpClient.Get(
+      'https://restcountries.com/v3.1/translation/' + ANomePais
+    );
+
+    if Response.StatusCode <> 200 then
+      raise Exception.Create('País não encontrado.');
+
+    JSONArray := TJSONObject.ParseJSONValue(Response.ContentAsString) as TJSONArray;
+
+    if (JSONArray = nil) or (JSONArray.Count = 0) then
+      raise Exception.Create('Resposta inválida da API.');
+
+    JSONObject := JSONArray.Items[0] as TJSONObject;
+
+    Result := TPaisModel.Create;
+
+    // Nome oficial
+    NameObj := JSONObject.GetValue('name') as TJSONObject;
+    Result.Nome.NomeOficial := NameObj.GetValue<string>('official');
+
+    // Capital (primeira posição do array)
+    Result.Capital.Add(
+      JSONObject.GetValue<TJSONArray>('capital').Items[0].Value
+    );
+
+    // Região
+    Result.Regiao := JSONObject.GetValue<string>('region');
+
+    // População
+    Result.Populacao := JSONObject.GetValue<Int64>('population');
+
+    // Moeda (pega a primeira chave, ex: BRL)
+    CurrenciesObj := JSONObject.GetValue('currencies') as TJSONObject;
+    CurrencyKey := CurrenciesObj.Pairs[0].JsonString.Value;
+    CurrencyObj := CurrenciesObj.GetValue(CurrencyKey) as TJSONObject;
+
+    Result.Moeda.Nome := CurrencyObj.GetValue<string>('name');
+    Result.Moeda.Simbolo := CurrencyObj.GetValue<string>('symbol');
+
+    // Bandeira
+    FlagsObj := JSONObject.GetValue('flags') as TJSONObject;
+    Result.Bandeira.Png := FlagsObj.GetValue<string>('png');
+
+  except
+    on E: Exception do
+    begin
+      if Assigned(Result) then
+        Result.Free;
+      raise Exception.Create('Erro ao consultar país: ' + E.Message);
+    end;
+  end;
+end;
+
+end.
+

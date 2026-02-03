@@ -5,6 +5,7 @@ interface
 uses
   Model.NomePais,
   Model.MoedaPais,
+  Model.BandeiraPais,
   System.Generics.Collections;
 
 type
@@ -15,6 +16,7 @@ type
     FRegiao: string;
     FPopulacao: Int64;
     FMoeda: TMoedaPaisModel;
+    FBandeira: TBandeiraPaisModel;
   public
     constructor Create;
     destructor Destroy; override;
@@ -24,6 +26,7 @@ type
     property Regiao: string read FRegiao write FRegiao;
     property Populacao: Int64 read FPopulacao write FPopulacao;
     property Moeda: TMoedaPaisModel read FMoeda write FMoeda;
+    property Bandeira: TBandeiraPaisModel read FBandeira write FBandeira;
   end;
 implementation
 
@@ -34,6 +37,7 @@ begin
   FNome := TNomePaisModel.Create;
   FCapital := TList<string>.Create;
   FMoeda := TMoedaPaisModel.Create;
+  FBandeira := TBandeiraPaisModel.Create;
 end;
 
 destructor TPaisModel.Destroy;
@@ -41,6 +45,7 @@ begin
   FNome.Free;
   FCapital.Free;
   FMoeda.Free;
+  FBandeira.Free;
   inherited;
 end;
 
